@@ -1,0 +1,41 @@
+<report class="balance-sheet">
+  <report-title>Balance Sheet</report-title>
+  
+  <div class="reports-balance-sheet">
+    <div id="balance-sheet">
+      <div class="category" *ngFor="let category of data">
+        <div class="category-header row">
+          <div class="column" ng-bind="categoryKey"></div>
+        </div>
+        <div class="type" ng-repeat="(typeKey, type) in category">
+          <div class="type-header row">
+            <div class="column" ng-bind="vm.getTypeName(typeKey)"></div>
+          </div>
+          <div class="subtype" ng-repeat="(subTypeKey, subType) in type">
+            <div class="item" ng-repeat="item in subType">
+              <div class="detail row">
+                <div class="detail-wrapper">
+                  <div class="title column" ng-bind="item.code"></div>
+                  <div class="name column" ng-bind="item.title"></div>
+                </div>
+                <div class="column" ng-bind="item.ending_balance | MBOaccountingCurrency"></div>
+              </div>
+              <div class="type-total row total" ng-if="$parent.$index === vm.getObjLength(type) - 1 &amp;&amp; $index === subType.length - 1 &amp;&amp; typeKey !== 'undefined'">
+                <div class="column">Total {{vm.getTypeName(typeKey)}}</div>
+                <div class="column"></div>
+                <div class="column" ng-bind="item.subtotal_by_type | MBOaccountingCurrency"></div>
+              </div>
+              <div class="category-total row total grand" ng-if="$parent.$parent.$index === vm.getObjLength(category) - 1 &amp;&amp; $parent.$index === vm.getObjLength(type) - 1 &amp;&amp; $index === subType.length - 1 &amp;&amp; categoryKey !== 'undefined'">
+                <div class="column">Total {{categoryKey}}</div>
+                <div class="column"></div>
+                <div class="column" ng-bind="item.subtotal_by_category | MBOaccountingCurrency"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <pre>{{ data | json }}</pre>
+  </div>
+</report>

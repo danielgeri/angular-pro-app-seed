@@ -5,7 +5,7 @@ const { AotPlugin } = require('@ngtools/webpack');
 
 const rules = [
   { test: /\.html$/, loader: 'html-loader' },
-  { test: /\.scss$/, loaders: ['raw-loader', 'sass-loader'] },
+  { test: /\.(css|scss)$/, loaders: ['raw-loader', 'sass-loader'] },
   { test: /\.(jpe?g|png|gif|svg)$/i, loader: 'file-loader' }
 ];
 

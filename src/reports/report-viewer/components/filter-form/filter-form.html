@@ -1,0 +1,24 @@
+<div
+  class="report-filter-form"
+  [formGroup]="parent"
+> 
+  <div formGroupName="reportSelector">
+    <select formControlName="endpoint">
+      <option value="">Select Report</option>
+      <option
+        *ngFor="let report of reports"
+        [value]="report.endpoint"
+      >{{ report.title }}</option>
+    </select>
+  </div>
+  <div formGroupName="filters">
+    <input type="text" formControlName="entity_id">
+    <input type="text" formControlName="property_id">
+    <input type="text" formControlName="transaction_start_date">
+    <input type="text" formControlName="transaction_end_date">
+  </div>
+    <m-button
+      [color]="'green'"
+      (click)="runReport()"
+  >Apply Filters</m-button>
+</div>

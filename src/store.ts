@@ -5,10 +5,11 @@ import 'rxjs/add/operator/pluck';
 import 'rxjs/add/operator/distinctUntilChanged';
 
 export interface State {
-  [key: string]: any
 }
 
-const state: State = {};
+const state: State = {
+  report: undefined,
+};
 
 export class Store {
 

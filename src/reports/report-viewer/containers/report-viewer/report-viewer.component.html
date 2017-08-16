@@ -1,0 +1,15 @@
+<div class="report-viewer">
+  <form [formGroup]="filterForm">
+    <report-filter-form
+      [parent]="filterForm"
+      [reports]="reports"
+      (run)="applyToURL($event)"
+    ></report-filter-form>
+  </form>
+  <div>{{ data$ | json }}</div>
+  <div *ngIf="data$">
+    <report-content
+      [data]="data$"
+    ></report-content>
+  </div>
+</div>
